@@ -20,7 +20,7 @@ export default {
                         }
                     });
                     if(existingUser){
-                        throw new Error("This username/password is already taken.");
+                        throw new Error("This username/email is already taken.");
                     }
                     const hashedPw = await bcrypt.hash(password, 10);
                     await client.user.create({
@@ -28,10 +28,10 @@ export default {
                             username,
                             email,
                             name,
-                            location,
+                            ...(location&&{location}),
                             password: hashedPw,
-                            avatarURL,
-                            githubUsername,
+                            ...(avatarURL&&{avatarURL}),
+                            ...(githubUsername&&{githubUsername}),
                         }
                     });
                     return {
