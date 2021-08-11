@@ -2,10 +2,8 @@ import { createWriteStream } from "fs";
 import client from "../../client";
 import bcrypt from "bcrypt";
 import { protectedResolver } from "../users.utils";
-import {GraphQLUpload} from "graphql-upload";
 
 export default {
-    Upload: GraphQLUpload,
     Mutation: {
         editProfile: protectedResolver(async(_,{
             username,
