@@ -8,7 +8,8 @@ export default gql`
     }
     type Mutation {
         editCoffeeShop(
-            shopName: String!
+            id: Int!
+            category: String
             newShopName: String
             latitude: String
             longitude: String

@@ -1,5 +1,5 @@
-import { createWriteStream } from "fs";
 import client from "../../client";
+import { handleFile } from "../../coffeeShops/coffeeShops.utils";
 import bcrypt from "bcrypt";
 import { protectedResolver } from "../users.utils";
 
@@ -15,12 +15,7 @@ export default {
             githubUsername},{loggedInUser}) => {
                 let url = null;
                 if (avatarURL) {
-                    const { filename, createReadStream } = await avatarURL;
-                    const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
-                    const readStream = createReadStream();
-                    const writeStream = createWriteStream(process.cwd() + "/uploads/" + newFilename);
-                    readStream.pipe(writeStream);
-                    url = `http://localhost:4000/static/${newFilename}`;
+                    url = handleFile(avatarURL, loggedInUser.id);
                 }
 
                 let hashedPw = null;

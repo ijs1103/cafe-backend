@@ -7,8 +7,7 @@ export default gql`
             latitude:   String
             longitude:  String
             url: Upload
-            categoryName: String!
-            slug: String!): CoffeeShop
+            categoryName: String!): CoffeeShop
     }
     
 `;
