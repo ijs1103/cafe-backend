@@ -4,30 +4,26 @@ import client from "../../client";
 
 export default {
     Mutation: {
-        login: async(_,{username, password}) => {
-            const existingUser = await client.user.findUnique({
-                where:{
-                    username
-                }
-            });
-            if(!existingUser){
+        login: async (_, { username, password }) => {
+            const user = await client.user.findFirst({ where: { username } });
+            if(!user) {
                 return {
                     ok: false,
-                    error: "user not found"
+                    error: "User not found",
                 };
             }
-            const passwordOk = bcrypt.compare(password, existingUser.password);
-            if(!passwordOk){
+            const passwordOk = await bcrypt.compare(password, user.password);
+            if (!passwordOk) {
                 return {
                     ok: false,
-                    error: "password error"
+                    error: "Incorrect password",
                 };
             }
-            const token = await jwt.sign({id: existingUser.id}, process.env.SECRET_KEY);
+            const token = await jwt.sign({id: user.id}, process.env.SECRET_KEY);
             return {
                 ok: true,
                 token,
             };
-        }
-    }
+        },
+    },
 };
