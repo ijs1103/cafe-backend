@@ -8,13 +8,13 @@ export default {
             if (!ok) {
                 return {
                     ok: false,
-                    error: "user does not exist",
+                    error: "팔로우 할 유저가 존재하지 않습니다.",
                 };
             }
             if (ok.id===loggedInUser.id) {
                 return {
                     ok: false,
-                    error: "Can't follow yourself",
+                    error: "나 자신을 팔로우 할 수 없습니다.",
                 }
             }
             await client.user.update({

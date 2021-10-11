@@ -12,7 +12,6 @@ export default {
             longitude,
             url,
             },{loggedInUser}) => {
-
                 try {
                     let newUrl = null;
 
@@ -27,16 +26,15 @@ export default {
                 if(!shop){
                     return {
                         ok: false,
-                        error: "Not existing coffeeShop"
+                        error: "존재하지 않는 카페입니다."
                     }
                 }
                 if (shop.UserId !== loggedInUser.id) {
                     return {
                         ok: false,
-                        error: "Not Authorized"
+                        error: "카페 주인만 수정할 수 있습니다."
                     }
                 }
-
                 const updateShop = await client.coffeeShop.update({
                     where:{
                         id

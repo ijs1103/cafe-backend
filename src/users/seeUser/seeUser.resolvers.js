@@ -15,7 +15,7 @@ export default {
         if(!ok){
             return {
                 ok: false,
-                error: "user doesn't exist",
+                error: "유저가 존재하지 않습니다.",
             }
         }
         const following = await client.user

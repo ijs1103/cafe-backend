@@ -20,7 +20,10 @@ export default {
                         }
                     });
                     if(existingUser){
-                        throw new Error("This username/email is already taken.");
+                        return {
+                            ok: false,
+                            error: "존재하는 아이디입니다.",
+                        };
                     }
                     const hashedPw = await bcrypt.hash(password, 10);
                     await client.user.create({

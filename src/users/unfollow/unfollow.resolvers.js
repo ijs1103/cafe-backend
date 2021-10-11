@@ -10,7 +10,7 @@ export default {
             if (!ok){
                 return {
                     ok: false,
-                    error: "user does not exist",
+                    error: "유저가 존재하지 않습니다.",
                 };
             }
             await client.user.update({

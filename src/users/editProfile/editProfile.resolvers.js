@@ -17,7 +17,6 @@ export default {
                 if (avatarURL) {
                     url = handleFile(avatarURL, loggedInUser.id);
                 }
-
                 let hashedPw = null;
                 if(password){
                     hashedPw = await bcrypt.hash(password, 10);
@@ -43,7 +42,7 @@ export default {
                 } else {
                     return {
                         ok: false,
-                        error: "could not update profile",
+                        error: "프로필을 업데이트 할 수 없습니다.",
                     };
                 }
 
