@@ -18,7 +18,7 @@ export default {
                     };
                 }
                                 
-                const shop = await client.coffeeShop.create({
+                await client.coffeeShop.create({
                     data: {
                         name,
                         ...(latitude&&{latitude}),
@@ -36,9 +36,14 @@ export default {
                         }
                     }
                 });
-                return shop;
-            } catch (error) {
-                console.log(error);
+                return {
+                    ok: true,
+                };
+            } catch (e) {
+                return {
+                    ok: false,
+                    error: e
+                };
             }
         })
     }
