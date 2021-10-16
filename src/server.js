@@ -1,4 +1,5 @@
 require("dotenv").config();
+import { graphqlUploadExpress } from "graphql-upload";
 import express from "express";
 import logger from "morgan";
 import { ApolloServer } from "apollo-server-express";
@@ -10,9 +11,11 @@ import { getUser } from "./users/users.utils";
   const apollo = new ApolloServer({
     typeDefs,
     resolvers,
+    uploads: false,
     playground: true,
     introspection: true,
     context: async ({req}) => {
+      console.log(req.headers.token);
       return {
         loggedInUser: await getUser(req.headers.token),
       };
@@ -20,6 +23,7 @@ import { getUser } from "./users/users.utils";
   });
 
   const app = express();
+  app.use(graphqlUploadExpress());
   app.use(logger("tiny"));
   apollo.applyMiddleware({ app });
   app.use("/static", express.static("uploads"));

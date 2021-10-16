@@ -22,10 +22,9 @@ export const handleFile = async (file, id) => {
   const { filename, createReadStream } = await file;
   const newFilename = `${id}-${Date.now()}-${filename}`;
   const readStream = createReadStream();
-
   const writeStream = createWriteStream(
     path.join(process.cwd(), 'uploads', newFilename)
   );
   readStream.pipe(writeStream);
-  return `http://localhost:4000/static/${newFilename}`;
+  return `http://localhost:5000/static/${newFilename}`;
 };

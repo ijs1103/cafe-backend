@@ -1,6 +1,7 @@
 import client from "../../client";
 import { processCategory, handleFile } from "../coffeeShops.utils";
 import { protectedResolver } from "../../users/users.utils";
+import { uploadPhoto } from "../../shared/shared.utils";
 
 export default {
     Mutation: {
@@ -11,13 +12,14 @@ export default {
                 let newUrl = null;
                 let photoObj = null;
                 if (url){
-                    newUrl = handleFile(url, loggedInUser.id);
+                    // newUrl = await handleFile(url, loggedInUser.id);
+                    newUrl = await uploadPhoto(url, loggedInUser.id, "shop");
                     photoObj = {
                         where: { url: newUrl },
                         create: { url: newUrl },
                     };
                 }
-                                
+                console.log(newUrl, "뉴유알엘");                   
                 await client.coffeeShop.create({
                     data: {
                         name,
@@ -28,9 +30,7 @@ export default {
                                 id: loggedInUser.id
                             }
                         },
-                        ...(url && {photos: {
-                            connectOrCreate: photoObj
-                        }}),
+                        url: newUrl,
                         categories: {
                             connectOrCreate: processCategory(categoryName)
                         }
