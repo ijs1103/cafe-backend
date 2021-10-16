@@ -41,7 +41,7 @@ model CoffeeShop {
   name  String @unique
   latitude String?
   longitude String?
-  url String?g
+  url String?
   user User @relation(fields: [UserId], references: [id])
   UserId Int
   photos CoffeeShopPhoto[]

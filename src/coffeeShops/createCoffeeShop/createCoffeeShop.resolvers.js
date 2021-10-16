@@ -14,12 +14,7 @@ export default {
                 if (url){
                     // newUrl = await handleFile(url, loggedInUser.id);
                     newUrl = await uploadPhoto(url, loggedInUser.id, "shop");
-                    photoObj = {
-                        where: { url: newUrl },
-                        create: { url: newUrl },
-                    };
                 }
-                console.log(newUrl, "뉴유알엘");                   
                 await client.coffeeShop.create({
                     data: {
                         name,
