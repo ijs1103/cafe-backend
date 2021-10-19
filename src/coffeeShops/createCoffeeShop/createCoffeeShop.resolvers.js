@@ -10,7 +10,6 @@ export default {
             // connectOrCreate의 where 조건절에는 필드가 하나만 있어야 한다
             try {
                 let newUrl = null;
-                let photoObj = null;
                 if (url){
                     // newUrl = await handleFile(url, loggedInUser.id);
                     newUrl = await uploadPhoto(url, loggedInUser.id, "shop");
@@ -25,12 +24,17 @@ export default {
                                 id: loggedInUser.id
                             }
                         },
-                        url: newUrl,
+                        photos: {
+                            create:{
+                                url: newUrl
+                            }
+                        },
                         categories: {
                             connectOrCreate: processCategory(categoryName)
                         }
                     }
                 });
+                
                 return {
                     ok: true,
                 };

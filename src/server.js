@@ -15,7 +15,6 @@ import { getUser } from "./users/users.utils";
     playground: true,
     introspection: true,
     context: async ({req}) => {
-      console.log(req.headers.token);
       return {
         loggedInUser: await getUser(req.headers.token),
       };

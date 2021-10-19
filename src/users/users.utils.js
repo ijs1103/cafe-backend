@@ -27,7 +27,7 @@ export function protectedResolver(myResolver) {
             } else {
                 return {
                     ok: false,
-                    error: "Please log in to do this"
+                    error: "먼저 로그인을 해주세요."
                 }
             }
         }

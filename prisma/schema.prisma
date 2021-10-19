@@ -14,16 +14,15 @@ model User {
   id        Int      @id @default(autoincrement())
   username String @unique
   email String  @unique
-  name String
+  name String?
   location String?
-  password String
+  password String?
   avatarURL String?
   githubUsername String?
+  provider String?
   shops CoffeeShop[]
   followers User[] @relation("FollowRelation", references: [id])
   following User[] @relation("FollowRelation", references: [id])
-  socialToken String?
-  socialProvider String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
