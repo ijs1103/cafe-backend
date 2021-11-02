@@ -5,7 +5,7 @@ export default gql`
         createCoffeeShop(
             name:       String!
             address: String
-            url: [Upload]
+            url: Upload
             categoryName: String!): MutationResponse!
     }
     
