@@ -8,13 +8,11 @@ export default {
             id,
             category,
             newShopName,
-            latitude,
-            longitude,
+            address,
             url,
             },{loggedInUser}) => {
                 try {
-                    let newUrl = null;
-
+                let newUrl = null;
                 const shop = await client.coffeeShop.findUnique({
                     where:{
                         id
@@ -41,8 +39,7 @@ export default {
                     },
                     data:{
                         ...(newShopName && {name: newShopName}),
-                        ...(latitude && {latitude}),
-                        ...(longitude && {longitude}),
+                        ...(address && {address}),
                         ...(category && {
                             categories: {
                                 disconnect: shop.categories,

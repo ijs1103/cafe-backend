@@ -2,6 +2,6 @@ import { gql } from "apollo-server";
 
 export default gql`
     type Query {
-        seeCoffeeShops(offset: Int!, limit: Int!, sort: String!):[CoffeeShop]
+        seeLikeShops(UserId: Int): [CoffeeShop]
     }
 `;

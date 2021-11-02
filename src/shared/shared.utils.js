@@ -6,6 +6,7 @@ AWS.config.update({
     },
 });
 export const uploadPhoto = async (file, id, folderName) => {
+    console.log("오류발생");
     const { filename, createReadStream } = await file;
     const readStream = createReadStream();
     const objectName = `${folderName}/${id}-${Date.now()}-${filename}`;

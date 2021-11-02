@@ -22,7 +22,7 @@ export default {
                     if(existingUser){
                         return {
                             ok: false,
-                            error: "존재하는 아이디입니다.",
+                            error: "존재하는 아이디 혹은 이메일입니다.",
                         };
                     }
                     const hashedPw = await bcrypt.hash(password, 10);

@@ -9,11 +9,16 @@ export default gql`
     type CoffeeShop {
         id:         Int
         name:       String
-        latitude:   String
-        longitude:  String
+        address:    String
         user:       User
         photos:     [CoffeeShopPhoto]
         categories: [Category]
+        isLiked: Boolean
+        likes: Int
+        comments: [Comment]
+        commentNumber: Int!
+        createdAt: String!
+        updatedAt: String!
     }
     type Category {
         id:     Int
@@ -25,5 +30,4 @@ export default gql`
     type Query {
         dummy: String
     }
-    
 `;
