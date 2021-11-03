@@ -40,7 +40,7 @@ model Category {
 model CoffeeShop {
   id        Int      @id @default(autoincrement())
   name  String @unique
-  address String
+  address String @unique
   url String?
   user User @relation(fields: [UserId], references: [id])
   UserId Int

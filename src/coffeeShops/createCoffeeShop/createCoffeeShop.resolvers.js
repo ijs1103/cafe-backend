@@ -13,6 +13,21 @@ export default {
                 if (url){
                     newUrl = await uploadPhoto(url, loggedInUser.id, "shop");
                 }
+                const existingShop = await client.coffeeShop.findFirst({
+                    where: {
+                        OR: [
+                            {name},
+                            {address}
+                        ]
+                    }
+                });
+                console.log(existingShop);
+                if(existingShop){
+                    return {
+                        ok: false,
+                        error: "존재하는 카페이름 혹은 주소 입니다."
+                    }
+                }
                 await client.coffeeShop.create({
                     data: {
                         name,
