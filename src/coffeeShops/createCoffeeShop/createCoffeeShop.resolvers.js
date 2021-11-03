@@ -25,7 +25,7 @@ export default {
                 if(existingShop){
                     return {
                         ok: false,
-                        error: "존재하는 카페이름 혹은 주소 입니다."
+                        error: "존재하는 카페 이름 혹은 주소 입니다."
                     }
                 }
                 await client.coffeeShop.create({
